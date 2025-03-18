@@ -3,12 +3,8 @@ const fs = require('fs')
 // Read the bookmarklet code
 const bookmarkletCode = fs.readFileSync('dist/main.js', 'utf8')
 
-// URL-encode the code
-// const encodedCode = encodeURIComponent(bookmarkletCode.trim())
-const encodedCode = bookmarkletCode
-
 // Create the bookmarklet link
-const bookmarkletLink = encodedCode
+const bookmarkletLink = bookmarkletCode.slice(1)
 
 // Read the README
 let readmeContent = fs.readFileSync('README.md', 'utf8')
