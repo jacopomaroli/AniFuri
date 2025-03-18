@@ -63,7 +63,6 @@ function annotateRuby (japaneseTextRaw, hiraganaTextRaw) {
   }
 
   const rubyText = rubyTextGroups.join(' ')
-  console.log(rubyText)
   return rubyText
 }
 
@@ -112,8 +111,6 @@ if (window.origHiRenderDraw) {
 window.origJpRenderDraw = japaneseRenderer.renderer.draw
 window.origHiRenderDraw = hiraganaRenderer.renderer.draw
 
-debugger
-
 japaneseRenderer.renderer.draw = (dialogue) => {
   window.origJpRenderDraw.apply(japaneseRenderer.renderer, [dialogue])
   maybeAnnotateRuby(dialogue, japaneseRenderer.renderer)
@@ -122,4 +119,8 @@ japaneseRenderer.renderer.draw = (dialogue) => {
 hiraganaRenderer.renderer.draw = (dialogue) => {
   window.origHiRenderDraw.apply(hiraganaRenderer.renderer, [dialogue])
   maybeAnnotateRuby(dialogue, hiraganaRenderer.renderer)
+}
+
+module.exports = {
+  annotateRuby
 }
